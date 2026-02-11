@@ -1,0 +1,49 @@
+name: mindnote
+description: 本地优先的灵感笔记应用 - 跨平台，支持PC和Android
+
+publish_to: 'none'
+
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # 状态管理
+  provider: ^6.0.5
+  riverpod: ^2.4.0
+  
+  # 本地存储
+  sqlite3: ^2.3.0
+  drift: ^2.13.0
+  drift_sqflite: ^2.0.0
+  
+  # 向量搜索（后期）
+  # vectordart: ^0.1.0
+  
+  # HTTP 请求
+  dio: ^5.4.0
+  
+  # 异步处理
+  equatable: ^2.0.5
+  
+  # 实用工具
+  uuid: ^4.2.0
+  intl: ^0.18.1
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  drift_dev: ^2.13.0
+  build_runner: ^2.4.6
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/

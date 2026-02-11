@@ -1,0 +1,40 @@
+# Dependencies
+.dart_tool/
+build/
+.pub/
+.packages
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Flutter
+/android/.gradle/
+/android/local.properties
+/ios/Flutter/.last_build_id
+/ios/Flutter/flutter_assets/
+/ios/Flutter/flutter_export_environment.sh
+/ios/Pods/
+
+# macOS
+.DS_Store
+
+# Linux
+*.pyc
+*.so
+*.o
+
+# Windows
+*.dll
+*.exe
+
+# Testing
+coverage/
+
+# Misc
+*.log
+.secret
+.env

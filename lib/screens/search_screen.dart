@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/note.dart';
 import '../services/search_service.dart';
+import '../widgets/common_widgets.dart';
 import 'note_editor_screen.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   List<SearchResult> _results = [];
   bool _isSearching = false;
-  String _searchMode = 'fuzzy'; // fuzzy, title, tag
+  String _searchMode = 'fuzzy'; // fuzzy, title, tag, semantic
 
   @override
   void dispose() {
@@ -178,7 +179,6 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               );
               if (shouldRefresh == true) {
-                // 重新搜索
                 _search(_searchController.text);
               }
             },
@@ -190,10 +190,16 @@ class _SearchScreenState extends State<SearchScreen> {
                   Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          note.title.isNotEmpty ? note.title : '无标题',
+                        child: HighlightText(
+                          text: note.title.isNotEmpty ? note.title : '无标题',
+                          highlight: _searchController.text,
                           style: const TextStyle(
                             fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          highlightStyle: const TextStyle(
+                            backgroundColor: Colors.yellow,
+                            color: Colors.black,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -203,14 +209,18 @@ class _SearchScreenState extends State<SearchScreen> {
                     ],
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    note.content.substring(
+                  HighlightText(
+                    text: note.content.substring(
                       0,
                       min(150, note.content.length),
                     ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
+                    highlight: _searchController.text,
                     style: TextStyle(color: Colors.grey[600]),
+                    highlightStyle: const TextStyle(
+                      backgroundColor: Colors.yellow,
+                      color: Colors.black,
+                    ),
+                    maxLines: 3,
                   ),
                   const SizedBox(height: 8),
                   Row(
@@ -240,8 +250,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                 color: Colors.blue[50],
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: Text(
-                                tag,
+                              child: HighlightText(
+                                text: tag,
+                                highlight: _searchController.text,
                                 style: TextStyle(
                                   fontSize: 10,
                                   color: Colors.blue[700],
